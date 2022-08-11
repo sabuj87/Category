@@ -7,6 +7,9 @@ use App\Models\Category;
 
 class CategoryController extends Controller
 {
+    
+    
+    
     public  function  show(){
         $categories = Category::orderBy('name','desc')->get();
 
@@ -14,6 +17,25 @@ class CategoryController extends Controller
 
     }
     public  function  add(Request $request){
+        
+             $request->validate(
+            [
+            'name' => 'required|max:150',
+           
+            ],
+        [
+
+
+            'name.required' => 'Please Provied name',
+           
+            
+
+           
+        ]
+    
+    
+    
+    );
         $category=new Category;
 
         $category->name=$request->name;
